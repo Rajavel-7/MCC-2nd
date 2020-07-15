@@ -1,0 +1,26 @@
+<div>
+  <google-map
+    height="25rem"
+    width="auto"
+    [center]="center"
+    [zoom]="zoom"
+    [options]="markerOptions"
+    (mapClick)="addMarker($event)"
+    (mapMousemove)="move($event)"
+    (mapRightclick)="removeLastMarker()"
+  >
+    <map-marker
+      #marker="mapMarker"
+      *ngFor="let markerPosition of markerPositions"
+      [position]="markerPosition"
+      (mapClick)="openInfoWindow(marker)"
+      (mapDblclick)="navigateToOEE(marker)"
+    ></map-marker>
+    <map-info-window>Info Window content </map-info-window>
+  </google-map>
+</div>
+<!--
+
+<div id="regions_div" style="width: 900px; height: 500px;"></div>
+
+-->

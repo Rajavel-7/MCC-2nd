@@ -1,0 +1,72 @@
+.test {
+  color: black;
+}
+
+.main {
+  background-color: var(--main-bg-color);
+  width: 100%;
+}
+
+mat-drawer-container {
+  color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+  height: 100%;
+}
+
+mat-toolbar {
+  height: 3.4rem;
+}
+
+mat-toolbar .menu-btn {
+  margin-left: 0;
+  padding: 0;
+  float: left;
+  height: 100%;
+}
+
+.mcc-sidenav {
+  width: 260px;
+  height: calc(100% - 0%);
+}
+
+.mcc-sidenav h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #bbbbbb;
+}
+
+.mcc-sidenav .title {
+  width: 180px;
+  margin: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+  color: #bbbbbb;
+}
+
+.mcc-sidenav .sidebar {
+  list-style: none;
+  text-decoration: none;
+}
+
+.mcc-sidenav .sidebar .item .menu-btn {
+  display: block;
+  color: #fff;
+  position: relative;
+  padding: 15px 20px;
+  transition: 0.3s;
+  transition-property: color;
+}
+
+.mcc-sidenav .sidebar .item .menu-btn:hover {
+  color: #4ccee8;
+}
+
+.mcc-sidenav .sidebar .item .menu-btn i {
+  margin-right: 20px;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}

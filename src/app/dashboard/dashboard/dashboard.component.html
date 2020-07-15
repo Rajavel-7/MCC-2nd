@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="flex-container">
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Plant Name</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Area Name</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Department Name</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Line Name</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>Machine Name</mat-label>
+          <mat-select>
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <input matInput [matDatepicker]="fDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="fDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #fDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="flex-item">
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <input matInput [matDatepicker]="tDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="tDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #tDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</div>

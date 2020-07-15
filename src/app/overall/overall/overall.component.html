@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <div class="row-xl" style="width: 100%;">
+    <div class="kpi-container">
+      <div class="kpi-item">
+        <mat-card class="card amber">
+          <mat-card-title style="cursor: pointer;">
+            89%
+          </mat-card-title>
+          <mat-card-content>
+            Availability
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card red">
+          <mat-card-title style="cursor: pointer;">
+            80%
+          </mat-card-title>
+          <mat-card-content>
+            Performance
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card green">
+          <mat-card-title style="cursor: pointer;">
+            91%
+          </mat-card-title>
+          <mat-card-content>
+            Quality
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card amber" routerLink="/overall/oee">
+          <mat-card-title style="cursor: pointer;">
+            87%
+          </mat-card-title>
+          <mat-card-content>
+            OEE
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="row-xl" style="width: 100%;">
+    <div class="kpi-container">
+      <div class="kpi-item">
+        <mat-card class="card">
+          <mat-card-title style="cursor: pointer;">
+            78 min
+          </mat-card-title>
+          <mat-card-content>
+            Total Downtime
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card">
+          <mat-card-title style="cursor: pointer;">
+            567
+          </mat-card-title>
+          <mat-card-content>
+            Shift Total
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card">
+          <mat-card-title style="cursor: pointer;">
+            700
+          </mat-card-title>
+          <mat-card-content>
+            Shift Goal
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="kpi-item">
+        <mat-card class="card">
+          <mat-card-title style="cursor: pointer;">
+            20
+          </mat-card-title>
+          <mat-card-content>
+            Total Rejects
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="chat-container">
+    <div class="chart-item">
+      <div style="display: block;">
+        <canvas
+          width="1000"
+          height="500"
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"
+        >
+        </canvas>
+      </div>
+    </div>
+    <div class="chart-item">
+      <canvas
+        width="calc(100% - 0%)"
+        height="500"
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

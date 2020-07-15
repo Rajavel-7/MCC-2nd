@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "Availability": 67.057, 
+      "Goal": 956613, 
+      "GoodPart": 474201.0, 
+      "OEE": 60.885, 
+      "Performance": 91.568, 
+      "PotentialPartCount": 662020.0, 
+      "Quality": 99.156, 
+      "SKUName": "N522347", 
+      "StaticGoal": 954206
+    }
+  ], 
+  "schema": {
+    "fields": [
+      {
+        "name": "SKUName", 
+        "type": "string"
+      }, 
+      {
+        "name": "GoodPart", 
+        "type": "number"
+      }, 
+      {
+        "name": "OEE", 
+        "type": "number"
+      }, 
+      {
+        "name": "PotentialPartCount", 
+        "type": "number"
+      }, 
+      {
+        "name": "Availability", 
+        "type": "number"
+      }, 
+      {
+        "name": "Quality", 
+        "type": "number"
+      }, 
+      {
+        "name": "Performance", 
+        "type": "number"
+      }, 
+      {
+        "name": "Goal", 
+        "type": "integer"
+      }, 
+      {
+        "name": "StaticGoal", 
+        "type": "integer"
+      }
+    ], 
+    "pandas_version": "0.20.0", 
+    "primaryKey": [
+      "SKUName"
+    ]
+  }
+}

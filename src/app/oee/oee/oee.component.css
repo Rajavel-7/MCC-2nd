@@ -1,0 +1,44 @@
+.flex-container {
+  display: flex;
+  margin: 1rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flex-item {
+  cursor: pointer;
+  color: var(--main-text-color);
+  width: 200px;
+  height: 250px;
+}
+
+.gauge {
+  display: flex;
+  justify-content: center;
+  transform: translate(0%, 9%);
+}
+
+.gauge:focus {
+  outline: none;
+}
+
+.flex-item-h1 {
+  color: var(--main-text-color);
+}
+
+.flex-item-h1 h1 {
+  transform: translate(0px, 0px);
+}
+
+.flex-item p {
+  text-align: center;
+  font-size: 0.9em;
+  transform: translate(0px, -75px);
+}
+
+.test ngx-gauge {
+  color: var(--main-text-color);
+}

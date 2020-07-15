@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  Overall Equipment Efficiency
+</nav>
+<div class="container-fluid">
+  <div class="flex-container">
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.a.gaugeValue"
+          [label]="oeeData1.a.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.p.gaugeValue"
+          [label]="oeeData1.p.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.q.gaugeValue"
+          [label]="oeeData1.q.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.oee.gaugeValue"
+          [label]="oeeData1.oee.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.yield.gaugeValue"
+          [label]="oeeData1.yield.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="gauge">
+        <ngx-gauge
+          [type]="gaugeType"
+          [size]="gaugeSize"
+          [thick]="gaugeThick"
+          [value]="oeeData1.capacityUtil.gaugeValue"
+          [label]="oeeData1.capacityUtil.gaugeLabel"
+          [append]="gaugeAppendText"
+          [thresholds]="thresholdConfig"
+          [cap]="gaugeCap"
+        >
+        </ngx-gauge>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.flex-container {
+  padding: 0;
+  margin: 1rem;
+  list-style: none;
+  display: flex;
+
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.flex-item {
+  color: var(--main-text-color);
+  padding: 0;
+  width: 14rem;
+  height: 3rem;
+  margin-top: 0;
+}
+
+.flex-item > mat-form-field {
+  width: 13rem;
+  font-size: 0.9em;
+}

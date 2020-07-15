@@ -1,0 +1,7 @@
+table {
+    width: 100%;
+  }
+  .tabS{
+    height: 25rem;
+    overflow: auto;
+}
