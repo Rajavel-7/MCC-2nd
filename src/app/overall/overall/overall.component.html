@@ -2,7 +2,7 @@
   <div class="row-xl" style="width: 100%;">
     <div class="kpi-container">
       <div class="kpi-item">
-        <mat-card class="card amber">
+        <mat-card class="card amber" routerLink="/overall/oee">
           <mat-card-title style="cursor: pointer;">
             89%
           </mat-card-title>
@@ -12,7 +12,7 @@
         </mat-card>
       </div>
       <div class="kpi-item">
-        <mat-card class="card red">
+        <mat-card class="card red" routerLink="/overall/oee">
           <mat-card-title style="cursor: pointer;">
             80%
           </mat-card-title>
@@ -22,7 +22,7 @@
         </mat-card>
       </div>
       <div class="kpi-item">
-        <mat-card class="card green">
+        <mat-card class="card green" routerLink="/overall/oee">
           <mat-card-title style="cursor: pointer;">
             91%
           </mat-card-title>
@@ -91,8 +91,8 @@
     <div class="chart-item">
       <div style="display: block;">
         <canvas
-          width="1000"
-          height="500"
+          width="1500"
+          height="350"
           baseChart
           [datasets]="barChartData"
           [labels]="barChartLabels"
@@ -104,7 +104,7 @@
         </canvas>
       </div>
     </div>
-    <div class="chart-item">
+    <!--<div class="chart-item">
       <canvas
         width="calc(100% - 0%)"
         height="500"
@@ -117,6 +117,6 @@
         [chartType]="barChartType"
       >
       </canvas>
-    </div>
+    </div> -->
   </div>
 </div>

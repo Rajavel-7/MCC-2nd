@@ -5,3 +5,12 @@ table {
     height: 25rem;
     overflow: auto;
 }
+
+.headerclickview{
+  margin-right:30px;
+  text-align: center;
+}
+.clickview{
+  align-items: center;
+  text-align: center;
+}

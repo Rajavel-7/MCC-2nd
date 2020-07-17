@@ -2,17 +2,20 @@ import { Component, OnInit } from "@angular/core";
 
 export interface PeriodicElement {
   location: string;
-  status: number;
-  weight: number;
-  symbol: string;
+  status: string;
+  plant: string;
+  region: string;
+  oee:number;
+  view:string
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { status: 1, location: "Delhi", weight: 1.0079, symbol: "H" },
-  { status: 2, location: "Chennai", weight: 4.0026, symbol: "He" },
-  { status: 3, location: "Mumbai", weight: 6.941, symbol: "Li" },
-  { status: 4, location: "Bengaluru", weight: 9.0122, symbol: "Be" },
-  { status: 5, location: "Ahemdabad", weight: 10.811, symbol: "B" },
+  { status: "./assets/images/on.png", location: "Delhi", plant: "Gear Plant", region: "India",oee:74,view:"" },
+  { status: "./assets/images/off.png", location: "Chennai", plant: "Gear Plant", region: "India" , oee:80,view:""},
+  { status: "./assets/images/on.png", location: "Mumbai", plant: "Gear Plant", region: "India",oee:78,view:"" },
+  { status: "./assets/images/on.png", location: "Bengaluru", plant: "Gear Plant", region: "India",oee:86,view:"" },
+  { status: "./assets/images/off.png", location: "Ahemdabad", plant: "Gear Palnt", region: "India",oee:88,view:"" },
+  { status: "./assets/images/on.png", location: "Kolkata", plant: "Gear Palnt", region: "India",oee:90,view:"" },
 ];
 
 @Component({
@@ -21,7 +24,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./left-side.component.css"],
 })
 export class LeftSideComponent implements OnInit {
-  displayedColumns: string[] = ["status", "location", "weight", "symbol"];
+  displayedColumns: string[] = ["status", "region", "plant", "location","oee","view"];
   dataSource = ELEMENT_DATA;
 
   constructor() {}
