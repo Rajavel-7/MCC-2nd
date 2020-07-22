@@ -14,8 +14,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { status: "./assets/images/off.png", location: "Chennai", plant: "Gear Plant", region: "India" , oee:80,view:""},
   { status: "./assets/images/on.png", location: "Mumbai", plant: "Gear Plant", region: "India",oee:78,view:"" },
   { status: "./assets/images/on.png", location: "Bengaluru", plant: "Gear Plant", region: "India",oee:86,view:"" },
-  { status: "./assets/images/off.png", location: "Ahemdabad", plant: "Gear Palnt", region: "India",oee:88,view:"" },
-  { status: "./assets/images/on.png", location: "Kolkata", plant: "Gear Palnt", region: "India",oee:90,view:"" },
+  { status: "./assets/images/off.png", location: "Ahemdabad", plant: "Gear Plant", region: "India",oee:88,view:"" },
+  { status: "./assets/images/on.png", location: "Kolkata", plant: "Gear Plant", region: "India",oee:90,view:"" },
 ];
 
 @Component({

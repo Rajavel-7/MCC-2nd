@@ -6,7 +6,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-
+import { ActivatedRoute } from "@angular/router";
 //am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
 
@@ -21,7 +21,8 @@ export class OverallComponent implements OnInit {
   public kpiProperty:string;
   private chart1: am4charts.XYChart;
  
-  
+  public plantname:string;
+  public plantlocation:string;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -53,12 +54,13 @@ export class OverallComponent implements OnInit {
     { data: [70, 75, 78, 66, 74, 56, 82,75,71,85,86,84,72], label: "OEE" },
   ];
 
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.isViewable=true;
     
-    
+    this.plantname = this.route.snapshot.paramMap.get("plant");
+    this.plantlocation = this.route.snapshot.paramMap.get("location");
   }
   
   

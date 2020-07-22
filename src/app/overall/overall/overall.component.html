@@ -1,3 +1,84 @@
+<mat-drawer-container style="margin-top: 6px;" class="example-container" autosize hasBackdrop="true">
+  <mat-drawer #drawer class="mcc-sidenav" mode="over">
+    <div class="title">
+      <h1>{{plantname}}</h1>
+    </div>
+    <hr class="solid" />
+    
+    <div class="sidebar">
+      <li class="item">
+        <a  class="menu-btn"
+          ><i class="fa fa-building" aria-hidden="true"></i
+          ><span>Department</span></a
+        >
+      </li>
+      <li class="item">
+        <a  class="menu-btn"
+          ><i class="fa fa-industry" aria-hidden="true"></i
+          ><span>Line</span></a
+        >
+      </li>
+      <li class="item">
+        <a class="menu-btn"
+          ><i class="fa fa-cogs" aria-hidden="true"></i><span>Machine</span></a
+        >
+      </li>
+    </div>
+   
+  </mat-drawer>
+  <div class="main">
+    <mat-toolbar>
+      <button mat-button (click)="drawer.toggle()" class="menu-btn">
+        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+      </button>
+      <!-- <button mat-button routerLink="/">Dashboard</button>
+      <button mat-button routerLink="/overall">OEE</button>
+      -->
+      <P class="labelformat"> Plant Name :  {{plantlocation}} {{plantname}} </P>
+      <span style="flex: 1 1 auto;"></span>
+      <div class="flex-container">
+    <div class='flex-item'>
+
+        <mat-form-field  appearance="outline">
+          <mat-label>Asset Name</mat-label>
+          <mat-select>
+            
+          </mat-select>
+        </mat-form-field>
+      
+      </div>
+      
+      <div class='flex-item'>
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <input matInput [matDatepicker]="fDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="fDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #fDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+        <div class='flex-item'>
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <input matInput [matDatepicker]="tDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="tDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #tDate></mat-datepicker>
+        </mat-form-field>
+     
+        </div>
+        <button mat-button style="background-color: coral" class='flex-item' color="Basic">Submit</button>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+  
+  
+
 <div class="container-fluid">
   <div class="row-xl" style="width: 100%;">
     <div class="kpi-container">
@@ -128,3 +209,7 @@
 </ng-template>
 
 </div>
+
+
+
+</mat-drawer-container>

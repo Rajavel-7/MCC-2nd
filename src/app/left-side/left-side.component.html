@@ -43,7 +43,7 @@
     <!-- view Column -->
     <ng-container matColumnDef="view">
       <th  mat-header-cell *matHeaderCellDef class="headerclickview">VIEW</th>
-      <td class="clickview" mat-cell *matCellDef="let element"> <a mat-mini-fab routerLink="/overall">click</a> </td>
+      <td class="clickview" mat-cell *matCellDef="let element"> <a mat-mini-fab routerLink="/overall/{{element.plant}}/{{element.location}}">click</a> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

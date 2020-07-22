@@ -11,12 +11,14 @@ const routes: Routes = [
   { path: "", component: LandingPageComponent },
   {
     path: "overall",
-    component: DashboardComponent,
-    children: [
-      { path: "", component: OverallComponent },
-      { path: "oee", component: OeeComponent },
-    ],
+    component: OverallComponent,
+//children: [
+  //    { path: "", component: OverallComponent },
+  //    { path: "oee", component: OeeComponent },
+  //  ],
   },
+  { path: "overall/:plant/:location", component: OverallComponent },
+  { path: "overall/:plant", component:OverallComponent},
 ];
 
 @NgModule({
