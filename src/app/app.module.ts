@@ -17,6 +17,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LeftSideComponent } from './left-side/left-side.component';
 import { KpiComponent } from './kpi/kpi.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BackenddataService } from './Services/backenddata.service';
+import { TestcompComponent } from './common/testcomp/testcomp.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { KpiComponent } from './kpi/kpi.component';
     LandingPageComponent,
     LeftSideComponent,
     KpiComponent,
+    TestcompComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +44,9 @@ import { KpiComponent } from './kpi/kpi.component';
     NgChartjsModule,
     NgxGaugeModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [BackenddataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
