@@ -7,8 +7,10 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import { ActivatedRoute } from "@angular/router";
-//am4core.useTheme(am4themes_dark);
-am4core.useTheme(am4themes_animated);
+import { BackenddataService } from 'src/app/Services/backenddata.service';
+import { Metadata } from 'src/app/backend/metadata';
+am4core.useTheme(am4themes_dark);
+//am4core.useTheme(am4themes_animated);
 
 @Component({
   selector: "app-overall",
@@ -20,9 +22,17 @@ export class OverallComponent implements OnInit {
   public isViewable:boolean;
   public kpiProperty:string;
   private chart1: am4charts.XYChart;
- 
+  metadata:Metadata[];
   public plantname:string;
   public plantlocation:string;
+  public avalue:string;
+  public pvalue:string;
+  public qvalue:string;
+  public ovalue:string;
+  public downvalue:string;
+  public gcount:string;
+  public rcount:string;
+  public targetassetId:string;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -54,7 +64,7 @@ export class OverallComponent implements OnInit {
     { data: [70, 75, 78, 66, 74, 56, 82,75,71,85,86,84,72], label: "OEE" },
   ];
 
-  constructor(private zone: NgZone, private route: ActivatedRoute) {}
+  constructor(private zone: NgZone, private route: ActivatedRoute,private metadataser:BackenddataService) {}
 
   ngOnInit() {
     this.isViewable=true;
@@ -62,8 +72,16 @@ export class OverallComponent implements OnInit {
     this.plantname = this.route.snapshot.paramMap.get("plant");
     this.plantlocation = this.route.snapshot.paramMap.get("location");
   }
-  
-  
+  receiveMessages($event:string){
+    this.targetassetId=$event;  
+     this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
+      {
+        this.metadata=data;
+        
+      })
+      console.log(this.metadata);
+
+   }
   public toggleAvail(): void {
     let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
     
@@ -100,7 +118,7 @@ export class OverallComponent implements OnInit {
 
       //Chart Title
       let title = chart.titles.create();
-      title.text = "OEE Trend";
+      title.text = "Availability";
       title.fontSize = 20;
       title.marginBottom = 5;
 
@@ -200,7 +218,7 @@ export class OverallComponent implements OnInit {
 
       //Chart Title
       let title = chart.titles.create();
-      title.text = "OEE Trend";
+      title.text = "Performance";
       title.fontSize = 20;
       title.marginBottom = 5;
 
@@ -298,7 +316,7 @@ export class OverallComponent implements OnInit {
   
         //Chart Title
         let title = chart.titles.create();
-        title.text = "OEE Trend";
+        title.text = "Quality";
         title.fontSize = 20;
         title.marginBottom = 5;
   
@@ -395,7 +413,7 @@ export class OverallComponent implements OnInit {
     
           //Chart Title
           let title = chart.titles.create();
-          title.text = "OEE Trend";
+          title.text = "OEE";
           title.fontSize = 20;
           title.marginBottom = 5;
     

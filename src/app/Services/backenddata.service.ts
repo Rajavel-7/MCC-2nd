@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BackenddataService {
-  private baseUrl="http://localhost:3000/AssetAPIs/getpropertyvalue/6cd75400-bfc1-4ae8-a1b6-6844e9523dbd"
+  private baseUrl="http://localhost:3000/AssetAPIs/getpropertyvalue/"
   propertyvalue:Observable<Metadata[]>
   constructor(private httpclient:HttpClient) {}
 
-    getassetpropertyvalue(){
-      this.propertyvalue=this.httpclient.get<Metadata[]>(this.baseUrl)
+    getassetpropertyvalue(assetid:string){
+      this.propertyvalue=this.httpclient.get<Metadata[]>(`http://localhost:3000/AssetAPIs/getpropertyvalue/${assetid}`)
       return this.propertyvalue;
     }
    }

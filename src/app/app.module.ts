@@ -20,6 +20,10 @@ import { KpiComponent } from './kpi/kpi.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BackenddataService } from './Services/backenddata.service';
 import { TestcompComponent } from './common/testcomp/testcomp.component';
+import { AssethierarchyComponent } from './assethierarchy/assethierarchy.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { TestcompComponent } from './common/testcomp/testcomp.component';
     LeftSideComponent,
     KpiComponent,
     TestcompComponent,
+    AssethierarchyComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { TestcompComponent } from './common/testcomp/testcomp.component';
     NgChartjsModule,
     NgxGaugeModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [BackenddataService],
   bootstrap: [AppComponent],

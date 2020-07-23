@@ -16,7 +16,7 @@ export class TestcompComponent implements OnInit {
   }
  finaldataflow()
    {
-     this.metadataser.getassetpropertyvalue().subscribe(data =>
+     this.metadataser.getassetpropertyvalue("23024dc7-fdb0-496a-8d38-3c4b2d61ad2f").subscribe(data =>
       {
         this.metadata=data; 
       })

@@ -10,9 +10,9 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { status: "./assets/images/on.png", location: "Delhi", plant: "Gear Plant", region: "India",oee:74,view:"" },
-  { status: "./assets/images/off.png", location: "Chennai", plant: "Gear Plant", region: "India" , oee:80,view:""},
-  { status: "./assets/images/on.png", location: "Mumbai", plant: "Gear Plant", region: "India",oee:78,view:"" },
+  { status: "./assets/images/on.png", location: "Chennai", plant: "Gear Plant", region: "India",oee:74,view:"" },
+  { status: "./assets/images/off.png", location: "Kanpur", plant: "Gear Plant", region: "India" , oee:80,view:""},
+  { status: "./assets/images/on.png", location: "Sanad", plant: "Assembly Plant", region: "India",oee:78,view:"" },
   { status: "./assets/images/on.png", location: "Bengaluru", plant: "Gear Plant", region: "India",oee:86,view:"" },
   { status: "./assets/images/off.png", location: "Ahemdabad", plant: "Gear Plant", region: "India",oee:88,view:"" },
   { status: "./assets/images/on.png", location: "Kolkata", plant: "Gear Plant", region: "India",oee:90,view:"" },
