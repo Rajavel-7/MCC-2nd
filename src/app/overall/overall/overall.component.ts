@@ -4,7 +4,7 @@ import { Label } from "ng2-charts";
 /* Imports AMChart */
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+//import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import { ActivatedRoute } from "@angular/router";
 import { BackenddataService } from 'src/app/Services/backenddata.service';
@@ -22,7 +22,7 @@ export class OverallComponent implements OnInit {
   public isViewable:boolean;
   public kpiProperty:string;
   private chart1: am4charts.XYChart;
-  metadata:Metadata[];
+  //public metadata:Metadata[];
   public plantname:string;
   public plantlocation:string;
   public avalue:string;
@@ -33,6 +33,7 @@ export class OverallComponent implements OnInit {
   public gcount:string;
   public rcount:string;
   public targetassetId:string;
+  
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -71,15 +72,32 @@ export class OverallComponent implements OnInit {
     
     this.plantname = this.route.snapshot.paramMap.get("plant");
     this.plantlocation = this.route.snapshot.paramMap.get("location");
+    this.avalue=(Math.floor(Math.random() * 86) + 30).toString()+"%";
+  this.pvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";
+   this.qvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";;
+  this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
+  this.downvalue=(Math.floor(Math.random() * 100) + 70).toString()+" min";
+   this.gcount=(Math.floor(Math.random() * 1000) + 900).toString();
+  this.rcount=(Math.floor(Math.random() * 50) + 20).toString();
+
   }
   receiveMessages($event:string){
     this.targetassetId=$event;  
-     this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
-      {
-        this.metadata=data;
+     //this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
+     // {
+      //  this.metadata=data;
         
-      })
-      console.log(this.metadata);
+     // })
+
+  this.avalue=(Math.floor(Math.random() * 86) + 30).toString()+"%";
+  this.pvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";
+   this.qvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";;
+  this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
+  this.downvalue=(Math.floor(Math.random() * 100) + 70).toString()+" min";
+   this.gcount=(Math.floor(Math.random() * 1000) + 900).toString();
+  this.rcount=(Math.floor(Math.random() * 50) + 20).toString();
+  this.targetassetId=this.targetassetId;
+      
 
    }
   public toggleAvail(): void {

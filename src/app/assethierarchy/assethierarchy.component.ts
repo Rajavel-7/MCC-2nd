@@ -29,6 +29,7 @@ export interface FlatTreeNode {
   styleUrls: ['./assethierarchy.component.css']
 })
 export class AssethierarchyComponent {
+ public activeNode:any;
 
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<FlatTreeNode>;

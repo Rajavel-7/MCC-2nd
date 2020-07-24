@@ -1,7 +1,7 @@
 <mat-drawer-container style="margin-top: 6px;" class="example-container" autosize hasBackdrop="true">
   <mat-drawer #drawer class="mcc-sidenav" mode="over">
     <div class="title">
-      <h1>{{plantlocation}} {{plantname}}</h1>
+      <h1 style="font-size:20px;">{{plantlocation}} {{plantname}}</h1>
     </div>
     <hr class="solid" />
     
@@ -18,22 +18,12 @@
       <button mat-button (click)="drawer.toggle()" class="menu-btn">
         <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
       </button>
-      <!-- <button mat-button routerLink="/">Dashboard</button>
-      <button mat-button routerLink="/overall">OEE</button>
-      -->
-      <P class="labelformat"> Plant Name :  {{plantlocation}} {{plantname}} </P>
+      
+      <P class="labelformat"> Plant:  {{plantlocation}} > {{plantname}} > {{targetassetId}} </P>
+      <P style="margin-left:20px;" class="labelformat">  </P>
       <span style="flex: 1 1 auto;"></span>
       <div class="flex-container">
-    <!--<div class='flex-item'>
-
-        <mat-form-field  appearance="outline">
-          <mat-label>Asset Name</mat-label>
-          <mat-select>
-            
-          </mat-select>
-        </mat-form-field>
-      
-      </div> -->
+    
       
       <div class='flex-item'>
         <mat-form-field appearance="outline">
@@ -72,7 +62,7 @@
       <div class="kpi-item">
         <mat-card class="card amber"  (click)="toggleAvail()">
           <mat-card-title style="cursor: pointer;">
-            89%
+            {{avalue}}
           </mat-card-title>
           <mat-card-content>
             Availability
@@ -82,7 +72,7 @@
       <div class="kpi-item">
         <mat-card class="card red"  (click)="togglePerf()">
           <mat-card-title style="cursor: pointer;">
-            80%
+            {{pvalue}}
           </mat-card-title>
           <mat-card-content>
             Performance
@@ -92,7 +82,7 @@
       <div class="kpi-item">
         <mat-card class="card green"  (click)="toggleQual()">
           <mat-card-title style="cursor: pointer;">
-            91%
+            {{qvalue}}
           </mat-card-title>
           <mat-card-content>
             Quality
@@ -102,7 +92,7 @@
       <div class="kpi-item">
         <mat-card class="card amber"  (click)="toggleOee()" >
           <mat-card-title style="cursor: pointer;">
-            87%
+            {{ovalue}}
           </mat-card-title>
           <mat-card-content>
             OEE
@@ -111,12 +101,12 @@
       </div>
     </div>
   </div>
-  <div class="row-xl" style="width: 100%;">
-    <div class="kpi-container">
-      <div class="kpi-item">
+  <div  class="row-xl" style="width: 100%;">
+    <div  class="kpi-container">
+      <div  class="kpi-item">
         <mat-card class="card">
           <mat-card-title style="cursor: pointer;">
-            78 min
+            {{downvalue}}
           </mat-card-title>
           <mat-card-content>
             Total Downtime
@@ -126,27 +116,27 @@
       <div class="kpi-item">
         <mat-card class="card">
           <mat-card-title style="cursor: pointer;">
-            567
+            {{gcount}}
           </mat-card-title>
           <mat-card-content>
             Shift Total
           </mat-card-content>
         </mat-card>
       </div>
-      <div class="kpi-item">
+      <div  class="kpi-item">
         <mat-card class="card">
           <mat-card-title style="cursor: pointer;">
-            700
+            1000
           </mat-card-title>
           <mat-card-content>
             Shift Goal
           </mat-card-content>
         </mat-card>
       </div>
-      <div class="kpi-item">
+      <div  class="kpi-item">
         <mat-card class="card">
           <mat-card-title style="cursor: pointer;">
-            20
+            {{rcount}}
           </mat-card-title>
           <mat-card-content>
             Total Rejects
@@ -156,6 +146,7 @@
     </div>
   </div>
   <div  *ngIf = "isViewable; else compB" class="chat-container">
+    
     <div class="chart-item">
       <div style="display: block;">
         <canvas
@@ -172,21 +163,7 @@
         </canvas>
       </div>
     </div>
-   <!-- <div class="chart-item">
-      <canvas
-        width="calc(100% - 0%)"
-        height="500"
-        baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [chartType]="barChartType"
-      >
-      </canvas>
-    </div>
-    -->
+  
   </div>
 <ng-template #compB>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="color: whitesmoke;">
