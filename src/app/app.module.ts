@@ -24,6 +24,7 @@ import { AssethierarchyComponent } from './assethierarchy/assethierarchy.compone
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './Login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
     KpiComponent,
     TestcompComponent,
     AssethierarchyComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
