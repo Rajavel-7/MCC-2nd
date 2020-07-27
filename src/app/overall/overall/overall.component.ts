@@ -72,13 +72,13 @@ export class OverallComponent implements OnInit {
     
     this.plantname = this.route.snapshot.paramMap.get("plant");
     this.plantlocation = this.route.snapshot.paramMap.get("location");
-    this.avalue=(Math.floor(Math.random() * 86) + 30).toString()+"%";
-  this.pvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";
-   this.qvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";;
+    this.avalue=(Math.floor(Math.random() * (86-30)) + 30).toString()+"%";
+  this.pvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
+   this.qvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
   this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
-  this.downvalue=(Math.floor(Math.random() * 100) + 70).toString()+" min";
-   this.gcount=(Math.floor(Math.random() * 1000) + 900).toString();
-  this.rcount=(Math.floor(Math.random() * 50) + 20).toString();
+  this.downvalue=(Math.floor(Math.random() * (100-70)) + 70).toString()+" min";
+   this.gcount=(Math.floor(Math.random() * (1000-70)) + 900).toString();
+  this.rcount=(Math.floor(Math.random() * (50-20)) + 20).toString();
 
   }
   receiveMessages($event:string){
@@ -89,13 +89,13 @@ export class OverallComponent implements OnInit {
         
      // })
 
-  this.avalue=(Math.floor(Math.random() * 86) + 30).toString()+"%";
-  this.pvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";
-   this.qvalue=(Math.floor(Math.random() * 85) + 30).toString()+"%";;
+  this.avalue=(Math.floor(Math.random() * (86-30)) + 30).toString()+"%";
+  this.pvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
+   this.qvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
   this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
-  this.downvalue=(Math.floor(Math.random() * 100) + 70).toString()+" min";
-   this.gcount=(Math.floor(Math.random() * 1000) + 900).toString();
-  this.rcount=(Math.floor(Math.random() * 50) + 20).toString();
+  this.downvalue=(Math.floor(Math.random() * (100-70)) + 70).toString()+" min";
+   this.gcount=(Math.floor(Math.random() * (1000-900)) + 900).toString();
+  this.rcount=(Math.floor(Math.random() * (50-20)) + 20).toString();
   this.targetassetId=this.targetassetId;
       
 
