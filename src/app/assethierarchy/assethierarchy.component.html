@@ -5,7 +5,7 @@
       {{ node.type === 'file' ? 'machine' : 'folder' }}
     </mat-icon>-->
     <i class="fa fa-industry" aria-hidden="true"></i>
-    <button (click)="sendtargetid(node.name)"  mat-flat-button >{{node.name}}</button>
+    <button (click)="sendtargetid(node.assetid)"  mat-flat-button >{{node.name}}</button>
   </mat-tree-node>
 
   <mat-tree-node (click)="activeNode = node" [ngClass]="{ 'background-highlight': activeNode === node }" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
@@ -20,7 +20,7 @@
     </mat-icon> -->
     <i class="fa fa-cogs" aria-hidden="true"></i>
 
-    <button (click)="sendtargetid(node.name)" mat-flat-button> {{node.name}}</button>
+    <button (click)="sendtargetid(node.assetid)" mat-flat-button> {{node.name}}</button>
    
   </mat-tree-node>
 </mat-tree>
