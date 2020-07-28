@@ -22,7 +22,7 @@ export class OverallComponent implements OnInit {
   public isViewable:boolean;
   public kpiProperty:string;
   private chart1: am4charts.XYChart;
-  //public metadata:Metadata[];
+  public metadata:Metadata[];
   public plantname:string;
   public plantlocation:string;
   public avalue:string;
@@ -83,11 +83,12 @@ export class OverallComponent implements OnInit {
   }
   receiveMessages($event:string){
     this.targetassetId=$event;  
-     //this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
-     // {
-      //  this.metadata=data;
+     this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
+     {
+      this.metadata=data;
+      console.log(this.metadata)
         
-     // })
+     })
 
   this.avalue=(Math.floor(Math.random() * (86-30)) + 30).toString()+"%";
   this.pvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
