@@ -7,8 +7,8 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 //import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import { ActivatedRoute } from "@angular/router";
-import { BackenddataService } from 'src/app/Services/backenddata.service';
-import { Metadata } from 'src/app/backend/metadata';
+import { BackenddataService } from "src/app/Services/backenddata.service";
+import { Metadata } from "src/app/backend/metadata";
 am4core.useTheme(am4themes_dark);
 //am4core.useTheme(am4themes_animated);
 
@@ -19,21 +19,22 @@ am4core.useTheme(am4themes_dark);
 })
 export class OverallComponent implements OnInit {
   test = "amber";
-  public isViewable:boolean;
-  public kpiProperty:string;
+  public isViewable: boolean;
+  public kpiProperty: string;
   private chart1: am4charts.XYChart;
-  public metadata:Metadata[];
-  public plantname:string;
-  public plantlocation:string;
-  public avalue:string;
-  public pvalue:string;
-  public qvalue:string;
-  public ovalue:string;
-  public downvalue:string;
-  public gcount:string;
-  public rcount:string;
-  public targetassetId:string;
-  
+  public metadata: Metadata[];
+  public plantname: string;
+  public plantlocation: string;
+  public avalue: string;
+  public pvalue: string;
+  public qvalue: string;
+  public ovalue: string;
+  public downvalue: string;
+  public gcount: string;
+  public rcount: string;
+  public sgoal: string;
+  public targetassetId: string;
+  public targetassetName: string;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -52,64 +53,77 @@ export class OverallComponent implements OnInit {
     "Apr-2020",
     "May-2020",
     "Jun-2020",
-    "Jul-2020"
+    "Jul-2020",
   ];
   public barChartType: ChartType = "bar";
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40,81,72,66,90,92,88], label: "Availablity" },
-    { data: [28, 48, 40, 19, 86, 27, 90,60,62,65,70,72,54], label: "Performance" },
-    { data: [87, 80, 76, 89, 69, 90, 81,78,76,77,88,80,84], label: "Quality" },
-    { data: [70, 75, 78, 66, 74, 56, 82,75,71,85,86,84,72], label: "OEE" },
+    {
+      data: [65, 59, 80, 81, 56, 55, 40, 81, 72, 66, 90, 92, 88],
+      label: "Availablity",
+    },
+    {
+      data: [28, 48, 40, 19, 86, 27, 90, 60, 62, 65, 70, 72, 54],
+      label: "Performance",
+    },
+    {
+      data: [87, 80, 76, 89, 69, 90, 81, 78, 76, 77, 88, 80, 84],
+      label: "Quality",
+    },
+    {
+      data: [70, 75, 78, 66, 74, 56, 82, 75, 71, 85, 86, 84, 72],
+      label: "OEE",
+    },
   ];
 
-  constructor(private zone: NgZone, private route: ActivatedRoute,private metadataser:BackenddataService) {}
+  constructor(
+    private zone: NgZone,
+    private route: ActivatedRoute,
+    private metadataser: BackenddataService
+  ) {}
 
   ngOnInit() {
-    this.isViewable=true;
-    
+    this.isViewable = true;
+
     this.plantname = this.route.snapshot.paramMap.get("plant");
     this.plantlocation = this.route.snapshot.paramMap.get("location");
-    this.avalue=(Math.floor(Math.random() * (86-30)) + 30).toString()+"%";
-  this.pvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
-   this.qvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
-  this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
-  this.downvalue=(Math.floor(Math.random() * (100-70)) + 70).toString()+" min";
-   this.gcount=(Math.floor(Math.random() * (1000-70)) + 900).toString();
-  this.rcount=(Math.floor(Math.random() * (50-20)) + 20).toString();
 
   }
-  receiveMessages($event:string){
-    this.targetassetId=$event;  
-     this.metadataser.getassetpropertyvalue(this.targetassetId).subscribe(data =>
-     {
-      this.metadata=data;
-      console.log(this.metadata)
-        
-     })
+ 
+  async receiveMessages($event: string) {
+    console.log($event["id"]);
+    this.targetassetId = $event["id"];
+    this.metadataser
+      .getassetpropertyvalue(this.targetassetId)
+      .subscribe((data) => {
+        console.log(data);
+        this.metadata = data;
+        this.avalue =
+          Math.trunc(this.metadata["Average Availability"] * 100) + "%";
+        this.pvalue =
+          Math.trunc(this.metadata["Average Performance"] * 100) + "%";
+        this.qvalue = Math.trunc(this.metadata["Average Quality"] * 100) + "%";
+        this.ovalue = Math.trunc(this.metadata["Average OEE"] * 100) + "%";
+        this.downvalue = this.metadata["Average downtime"];
+        this.gcount = this.metadata["Total Good Count"];
+        this.rcount = this.metadata["Total Reject"];
+        this.sgoal = "1000";
+      });
 
-  this.avalue=(Math.floor(Math.random() * (86-30)) + 30).toString()+"%";
-  this.pvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
-   this.qvalue=(Math.floor(Math.random() * (85-30)) + 30).toString()+"%";
-  this.ovalue=(((parseInt(this.avalue)+parseInt(this.pvalue)+parseInt(this.qvalue))/3).toFixed(0)).toString()+"%";
-  this.downvalue=(Math.floor(Math.random() * (100-70)) + 70).toString()+" min";
-   this.gcount=(Math.floor(Math.random() * (1000-900)) + 900).toString();
-  this.rcount=(Math.floor(Math.random() * (50-20)) + 20).toString();
-  this.targetassetId=this.targetassetId;
-      
-
-   }
+    this.targetassetId = this.targetassetId;
+    this.targetassetName = $event["name"];
+   
+  }
   public toggleAvail(): void {
     let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
-    
+
     this.zone.runOutsideAngular(() => {
       let gData = [];
 
       //console.log(data);
       // Create chart instance
-      
 
       //json Payload
       data["data"].forEach((e) => {
@@ -169,7 +183,6 @@ export class OverallComponent implements OnInit {
       let bullethover = bullet.states.create("hover");
       bullethover.properties.scale = 1.3;
 
-      
       // Make a panning cursor
       chart.cursor = new am4charts.XYCursor();
       chart.cursor.behavior = "panXY";
@@ -192,18 +205,16 @@ export class OverallComponent implements OnInit {
       dateAxis.keepSelection = true;
 
       this.chart1 = chart;
-      this.isViewable=true;
-    this.isViewable = !this.isViewable;
-    this.kpiProperty="Availability" 
+      this.isViewable = true;
+      this.isViewable = !this.isViewable;
+      this.kpiProperty = "Availability";
     });
-
-  
   }
 
   public togglePerf(): void {
-    this.isViewable=true;
+    this.isViewable = true;
     this.isViewable = !this.isViewable;
-    this.kpiProperty="Performance" 
+    this.kpiProperty = "Performance";
     this.zone.runOutsideAngular(() => {
       let gData = [];
 
@@ -241,8 +252,6 @@ export class OverallComponent implements OnInit {
       title.fontSize = 20;
       title.marginBottom = 5;
 
-      
-
       // Create series for Performance-------------------------------------------------
       let seriesP = chart.series.push(new am4charts.LineSeries());
       seriesP.dataFields.valueY = "p";
@@ -271,8 +280,6 @@ export class OverallComponent implements OnInit {
       let bullethoverP = bulletP.states.create("hover");
       bullethoverP.properties.scale = 1.3;
 
-      
-
       // Make a panning cursor
       chart.cursor = new am4charts.XYCursor();
       chart.cursor.behavior = "panXY";
@@ -298,198 +305,193 @@ export class OverallComponent implements OnInit {
     });
   }
 
-    public toggleQual(): void {
-      this.isViewable=true;
-      this.isViewable = !this.isViewable;
-      this.kpiProperty="Quality" 
-      this.zone.runOutsideAngular(() => {
-        let gData = [];
-  
-        //console.log(data);
-        // Create chart instance
-        let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
-  
-        //json Payload
-        data["data"].forEach((e) => {
-          let a = Math.round(e.Availability);
-          let p = Math.round(e.Performance);
-          let q = Math.round(e.Quality);
-          let oee = Math.round(e.OEE);
-          gData.push({ a: a, p: p, q: q, oee: oee, Sdate: e.Sdate });
-        });
-        //console.log(gData);
-  
-        // Add data
-        chart.data = gData; //data["data"];
-  
-        // Set input format for the dates
-        chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
-  
-        // Create axes
-        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  
-        //XY Axis Labels
-        dateAxis.title.text = "Date";
-        valueAxis.title.text = "Percentage";
-  
-        //Chart Title
-        let title = chart.titles.create();
-        title.text = "Quality";
-        title.fontSize = 20;
-        title.marginBottom = 5;
-  
-        
-  
-        //Create series for Quality ------------------------------------------------
-        let seriesQ = chart.series.push(new am4charts.LineSeries());
-        seriesQ.dataFields.valueY = "q";
-        seriesQ.dataFields.dateX = "Sdate";
-        seriesQ.tooltipText = "{valueY}";
-        seriesQ.tensionX = 0.8;
-        seriesQ.strokeWidth = 2;
-        seriesQ.minBulletDistance = 15;
-        seriesQ.stroke = am4core.color("rgb(1, 224, 224)");
-  
-        // Drop-shaped tooltips
-        seriesQ.tooltip.background.cornerRadius = 10;
-        seriesQ.tooltip.background.strokeOpacity = 0;
-        seriesQ.tooltip.pointerOrientation = "right";
-        seriesQ.tooltip.label.minWidth = 40;
-        seriesQ.tooltip.label.minHeight = 40;
-        seriesQ.tooltip.label.textAlign = "middle";
-        seriesQ.tooltip.label.textValign = "middle";
-  
-        // Make bullets grow on hover
-        let bulletQ = seriesQ.bullets.push(new am4charts.CircleBullet());
-        bulletQ.circle.strokeWidth = 2;
-        bulletQ.circle.radius = 4;
-        bulletQ.circle.fill = am4core.color("#fff");
-  
-        let bullethoverQ = bulletQ.states.create("hover");
-        bullethoverQ.properties.scale = 1.3;
-  
-        
-        // Make a panning cursor
-        chart.cursor = new am4charts.XYCursor();
-        chart.cursor.behavior = "panXY";
-        chart.cursor.xAxis = dateAxis;
-        chart.cursor.snapToSeries = seriesQ;
-  
-        // Create vertical scrollbar and place it before the value axis
-        chart.scrollbarY = new am4core.Scrollbar();
-        chart.scrollbarY.parent = chart.leftAxesContainer;
-        chart.scrollbarY.toBack();
-  
-        // Create a horizontal scrollbar with previe and place it underneath the date axis
-        let scrollbarX1 = new am4charts.XYChartScrollbar();
-        scrollbarX1.series.push(seriesQ);
-        chart.scrollbarX = scrollbarX1;
-        chart.scrollbarX.minHeight = 15;
-        chart.scrollbarX.parent = chart.bottomAxesContainer;
-  
-        dateAxis.start = 0.79;
-        dateAxis.keepSelection = true;
-  
-        this.chart1 = chart;
-      });
-    }
+  public toggleQual(): void {
+    this.isViewable = true;
+    this.isViewable = !this.isViewable;
+    this.kpiProperty = "Quality";
+    this.zone.runOutsideAngular(() => {
+      let gData = [];
 
-      public toggleOee(): void {
-        this.isViewable=true;
-        this.isViewable = !this.isViewable;
-        this.kpiProperty="OEE" 
-        this.zone.runOutsideAngular(() => {
-          let gData = [];
-    
-          //console.log(data);
-          // Create chart instance
-          let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
-    
-          //json Payload
-          data["data"].forEach((e) => {
-            let a = Math.round(e.Availability);
-            let p = Math.round(e.Performance);
-            let q = Math.round(e.Quality);
-            let oee = Math.round(e.OEE);
-            gData.push({ a: a, p: p, q: q, oee: oee, Sdate: e.Sdate });
-          });
-          //console.log(gData);
-    
-          // Add data
-          chart.data = gData; //data["data"];
-    
-          // Set input format for the dates
-          chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
-    
-          // Create axes
-          let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-          let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    
-          //XY Axis Labels
-          dateAxis.title.text = "Date";
-          valueAxis.title.text = "Percentage";
-    
-          //Chart Title
-          let title = chart.titles.create();
-          title.text = "OEE";
-          title.fontSize = 20;
-          title.marginBottom = 5;
-    
-          
-    
-          //Create series for OEE --------------------------------------------------------
-          let seriesO = chart.series.push(new am4charts.LineSeries());
-          seriesO.dataFields.valueY = "oee";
-          seriesO.dataFields.dateX = "Sdate";
-          seriesO.tooltipText = "OEE:{valueY}";
-          seriesO.tensionX = 0.8;
-          seriesO.strokeWidth = 2;
-          seriesO.minBulletDistance = 15;
-          seriesO.stroke = am4core.color("rgb(1, 120, 1)");
-    
-          // Drop-shaped tooltips
-          seriesO.tooltip.background.cornerRadius = 10;
-          seriesO.tooltip.background.strokeOpacity = 0;
-          seriesO.tooltip.pointerOrientation = "right";
-          seriesO.tooltip.label.minWidth = 40;
-          seriesO.tooltip.label.minHeight = 40;
-          seriesO.tooltip.label.textAlign = "middle";
-          seriesO.tooltip.label.textValign = "middle";
-    
-          // Make bullets grow on hover
-          let bulletO = seriesO.bullets.push(new am4charts.CircleBullet());
-          bulletO.circle.strokeWidth = 2;
-          bulletO.circle.radius = 4;
-          bulletO.circle.fill = am4core.color("#fff");
-    
-          let bullethoverO = bulletO.states.create("hover");
-          bullethoverO.properties.scale = 1.3;
-    
-          // Make a panning cursor
-          chart.cursor = new am4charts.XYCursor();
-          chart.cursor.behavior = "panXY";
-          chart.cursor.xAxis = dateAxis;
-          chart.cursor.snapToSeries = seriesO;
-    
-          // Create vertical scrollbar and place it before the value axis
-          chart.scrollbarY = new am4core.Scrollbar();
-          chart.scrollbarY.parent = chart.leftAxesContainer;
-          chart.scrollbarY.toBack();
-    
-          // Create a horizontal scrollbar with previe and place it underneath the date axis
-          let scrollbarX1 = new am4charts.XYChartScrollbar();
-          scrollbarX1.series.push(seriesO);
-          chart.scrollbarX = scrollbarX1;
-          chart.scrollbarX.minHeight = 15;
-          chart.scrollbarX.parent = chart.bottomAxesContainer;
-    
-          dateAxis.start = 0.79;
-          dateAxis.keepSelection = true;
-    
-          this.chart1 = chart;
-        });
-      }
+      //console.log(data);
+      // Create chart instance
+      let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
+
+      //json Payload
+      data["data"].forEach((e) => {
+        let a = Math.round(e.Availability);
+        let p = Math.round(e.Performance);
+        let q = Math.round(e.Quality);
+        let oee = Math.round(e.OEE);
+        gData.push({ a: a, p: p, q: q, oee: oee, Sdate: e.Sdate });
+      });
+      //console.log(gData);
+
+      // Add data
+      chart.data = gData; //data["data"];
+
+      // Set input format for the dates
+      chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+      // Create axes
+      let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+      //XY Axis Labels
+      dateAxis.title.text = "Date";
+      valueAxis.title.text = "Percentage";
+
+      //Chart Title
+      let title = chart.titles.create();
+      title.text = "Quality";
+      title.fontSize = 20;
+      title.marginBottom = 5;
+
+      //Create series for Quality ------------------------------------------------
+      let seriesQ = chart.series.push(new am4charts.LineSeries());
+      seriesQ.dataFields.valueY = "q";
+      seriesQ.dataFields.dateX = "Sdate";
+      seriesQ.tooltipText = "{valueY}";
+      seriesQ.tensionX = 0.8;
+      seriesQ.strokeWidth = 2;
+      seriesQ.minBulletDistance = 15;
+      seriesQ.stroke = am4core.color("rgb(1, 224, 224)");
+
+      // Drop-shaped tooltips
+      seriesQ.tooltip.background.cornerRadius = 10;
+      seriesQ.tooltip.background.strokeOpacity = 0;
+      seriesQ.tooltip.pointerOrientation = "right";
+      seriesQ.tooltip.label.minWidth = 40;
+      seriesQ.tooltip.label.minHeight = 40;
+      seriesQ.tooltip.label.textAlign = "middle";
+      seriesQ.tooltip.label.textValign = "middle";
+
+      // Make bullets grow on hover
+      let bulletQ = seriesQ.bullets.push(new am4charts.CircleBullet());
+      bulletQ.circle.strokeWidth = 2;
+      bulletQ.circle.radius = 4;
+      bulletQ.circle.fill = am4core.color("#fff");
+
+      let bullethoverQ = bulletQ.states.create("hover");
+      bullethoverQ.properties.scale = 1.3;
+
+      // Make a panning cursor
+      chart.cursor = new am4charts.XYCursor();
+      chart.cursor.behavior = "panXY";
+      chart.cursor.xAxis = dateAxis;
+      chart.cursor.snapToSeries = seriesQ;
+
+      // Create vertical scrollbar and place it before the value axis
+      chart.scrollbarY = new am4core.Scrollbar();
+      chart.scrollbarY.parent = chart.leftAxesContainer;
+      chart.scrollbarY.toBack();
+
+      // Create a horizontal scrollbar with previe and place it underneath the date axis
+      let scrollbarX1 = new am4charts.XYChartScrollbar();
+      scrollbarX1.series.push(seriesQ);
+      chart.scrollbarX = scrollbarX1;
+      chart.scrollbarX.minHeight = 15;
+      chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+      dateAxis.start = 0.79;
+      dateAxis.keepSelection = true;
+
+      this.chart1 = chart;
+    });
+  }
+
+  public toggleOee(): void {
+    this.isViewable = true;
+    this.isViewable = !this.isViewable;
+    this.kpiProperty = "OEE";
+    this.zone.runOutsideAngular(() => {
+      let gData = [];
+
+      //console.log(data);
+      // Create chart instance
+      let chart = am4core.create("oeeChartDiv1", am4charts.XYChart);
+
+      //json Payload
+      data["data"].forEach((e) => {
+        let a = Math.round(e.Availability);
+        let p = Math.round(e.Performance);
+        let q = Math.round(e.Quality);
+        let oee = Math.round(e.OEE);
+        gData.push({ a: a, p: p, q: q, oee: oee, Sdate: e.Sdate });
+      });
+      //console.log(gData);
+
+      // Add data
+      chart.data = gData; //data["data"];
+
+      // Set input format for the dates
+      chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+      // Create axes
+      let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+      //XY Axis Labels
+      dateAxis.title.text = "Date";
+      valueAxis.title.text = "Percentage";
+
+      //Chart Title
+      let title = chart.titles.create();
+      title.text = "OEE";
+      title.fontSize = 20;
+      title.marginBottom = 5;
+
+      //Create series for OEE --------------------------------------------------------
+      let seriesO = chart.series.push(new am4charts.LineSeries());
+      seriesO.dataFields.valueY = "oee";
+      seriesO.dataFields.dateX = "Sdate";
+      seriesO.tooltipText = "OEE:{valueY}";
+      seriesO.tensionX = 0.8;
+      seriesO.strokeWidth = 2;
+      seriesO.minBulletDistance = 15;
+      seriesO.stroke = am4core.color("rgb(1, 120, 1)");
+
+      // Drop-shaped tooltips
+      seriesO.tooltip.background.cornerRadius = 10;
+      seriesO.tooltip.background.strokeOpacity = 0;
+      seriesO.tooltip.pointerOrientation = "right";
+      seriesO.tooltip.label.minWidth = 40;
+      seriesO.tooltip.label.minHeight = 40;
+      seriesO.tooltip.label.textAlign = "middle";
+      seriesO.tooltip.label.textValign = "middle";
+
+      // Make bullets grow on hover
+      let bulletO = seriesO.bullets.push(new am4charts.CircleBullet());
+      bulletO.circle.strokeWidth = 2;
+      bulletO.circle.radius = 4;
+      bulletO.circle.fill = am4core.color("#fff");
+
+      let bullethoverO = bulletO.states.create("hover");
+      bullethoverO.properties.scale = 1.3;
+
+      // Make a panning cursor
+      chart.cursor = new am4charts.XYCursor();
+      chart.cursor.behavior = "panXY";
+      chart.cursor.xAxis = dateAxis;
+      chart.cursor.snapToSeries = seriesO;
+
+      // Create vertical scrollbar and place it before the value axis
+      chart.scrollbarY = new am4core.Scrollbar();
+      chart.scrollbarY.parent = chart.leftAxesContainer;
+      chart.scrollbarY.toBack();
+
+      // Create a horizontal scrollbar with previe and place it underneath the date axis
+      let scrollbarX1 = new am4charts.XYChartScrollbar();
+      scrollbarX1.series.push(seriesO);
+      chart.scrollbarX = scrollbarX1;
+      chart.scrollbarX.minHeight = 15;
+      chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+      dateAxis.start = 0.79;
+      dateAxis.keepSelection = true;
+
+      this.chart1 = chart;
+    });
+  }
 }
 
 const data = {

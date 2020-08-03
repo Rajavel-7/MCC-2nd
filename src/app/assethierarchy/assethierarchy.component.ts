@@ -1,14 +1,17 @@
-import { Component,Output,EventEmitter } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { of as observableOf } from 'rxjs';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { files } from './example-data';
+import { Component, Output, EventEmitter } from "@angular/core";
+import {
+  MatTreeFlatDataSource,
+  MatTreeFlattener,
+} from "@angular/material/tree";
+import { of as observableOf } from "rxjs";
+import { FlatTreeControl } from "@angular/cdk/tree";
+import { files } from "./example-data";
 
 /** File node data with possible child nodes. */
 export interface FileNode {
   name: string;
   type: string;
-  assetid:string;
+  assetid: string;
   children?: FileNode[];
 }
 
@@ -24,12 +27,12 @@ export interface FlatTreeNode {
 }
 
 @Component({
-  selector: 'app-assethierarchy',
-  templateUrl: './assethierarchy.component.html',
-  styleUrls: ['./assethierarchy.component.css']
+  selector: "app-assethierarchy",
+  templateUrl: "./assethierarchy.component.html",
+  styleUrls: ["./assethierarchy.component.css"],
 })
 export class AssethierarchyComponent {
- public activeNode:any;
+  public activeNode: any;
 
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<FlatTreeNode>;
@@ -40,30 +43,34 @@ export class AssethierarchyComponent {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<FileNode, FlatTreeNode>;
 
-  public targetid:string;
+  public targetid: string;
 
-  @Output() targetidevent=new EventEmitter<string>();
+  @Output() targetidevent = new EventEmitter<{ id: string; name: string }>();
 
   constructor() {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
       this.isExpandable,
-      this.getChildren);
+      this.getChildren
+    );
 
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
-    this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+    this.dataSource = new MatTreeFlatDataSource(
+      this.treeControl,
+      this.treeFlattener
+    );
     this.dataSource.data = files;
   }
- 
+
   /** Transform the data to something the tree can read. */
   transformer(node: FileNode, level: number) {
     return {
       name: node.name,
       type: node.type,
-      assetid:node.assetid,
+      assetid: node.assetid,
       level: level,
-      expandable: !!node.children
+      expandable: !!node.children,
     };
   }
 
@@ -86,10 +93,7 @@ export class AssethierarchyComponent {
   getChildren(node: FileNode) {
     return observableOf(node.children);
   }
-  sendtargetid(targetassetid:string)
-  {
-
-      this.targetidevent.emit(targetassetid);
-      
+  sendtargetid(targetassetid: string, targetassetname: string) {
+    this.targetidevent.emit({ id: targetassetid, name: targetassetname });
   }
 }
